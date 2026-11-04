@@ -31,10 +31,12 @@ def order_history(orders, customer, page, per_page=10):
         key=lambda o: o.id,
         reverse=True,
     )
-    start = page * per_page
-    return mine[start:start + per_page]
+    return paginate(mine, page, per_page)
 
 
 def apply_loyalty_discount(total, years):
-    """Loyal customers get 5% off for every year they have been with us."""
-    return round(total * (1 - years * 0.05), 2)
+    """Loyal customers get 5% off for every year they have been with us.
+
+    The discount is capped at 100%, so a total never goes negative.
+    """
+    return apply_discount(total, min(years * 5, 100))
