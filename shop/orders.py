@@ -40,3 +40,9 @@ def apply_loyalty_discount(total, years):
     The discount is capped at 100%, so a total never goes negative.
     """
     return apply_discount(total, min(years * 5, 100))
+
+
+def search_orders(orders, query, page, per_page=10):
+    """Return one page of orders whose customer name contains the query."""
+    hits = [o for o in orders if query.lower() in o.customer.lower()]
+    return paginate(hits, page, per_page)
