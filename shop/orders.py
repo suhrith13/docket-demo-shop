@@ -22,3 +22,19 @@ def apply_discount(total, percent):
     if not 0 <= percent <= 100:
         raise ValueError("percent must be between 0 and 100")
     return round(total * (1 - percent / 100), 2)
+
+
+def order_history(orders, customer, page, per_page=10):
+    """Return one page of a customer's orders, newest first."""
+    mine = sorted(
+        (o for o in orders if o.customer == customer),
+        key=lambda o: o.id,
+        reverse=True,
+    )
+    start = page * per_page
+    return mine[start:start + per_page]
+
+
+def apply_loyalty_discount(total, years):
+    """Loyal customers get 5% off for every year they have been with us."""
+    return round(total * (1 - years * 0.05), 2)
