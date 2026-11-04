@@ -46,3 +46,10 @@ def search_orders(orders, query, page, per_page=10):
     """Return one page of orders whose customer name contains the query."""
     hits = [o for o in orders if query.lower() in o.customer.lower()]
     return paginate(hits, page, per_page)
+
+
+def average_order_total(orders):
+    """Average order value, for the dashboard. 0.0 when there are no orders."""
+    if not orders:
+        return 0.0
+    return sum(o.total for o in orders) / len(orders)
