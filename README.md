@@ -1,5 +1,8 @@
 # docket-demo-shop
 
+The project itself: [suhrith13/Docket](https://github.com/suhrith13/Docket).
+
+
 A tiny Python project used to demo **Docket**, a courtroom-style code review in a Switch room.
 
 > **The bugs in this repo are planted on purpose.** `main` is clean and its tests pass.
